@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'">
+  <title>지역별 CSV 추출 · 겨울길 주유지도</title>
+  <link rel="icon" href="assets/icons/snowflake.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/data.js" defer></script>
+  <script src="assets/regions.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body data-page="extract">
+  <header class="top"><div class="shell top-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/icons/snowflake.svg" alt=""></span>겨울길 주유지도</a>
+    <a class="home-link" href="index.html"><img src="assets/icons/house.svg" alt="">메인으로</a>
+  </div></header>
+  <main class="shell workspace">
+    <div class="page-heading"><h1>지역별 CSV 추출</h1><p>두 CSV를 불러오고 저장할 지역을 선택하세요.</p></div>
+    <section class="panel inputs" aria-label="CSV 파일 불러오기">
+      <div class="file-grid">
+        <div><label class="field-label" for="stations"><img src="assets/icons/fuel.svg" alt="">주유소 CSV</label><input id="stations" type="file" accept=".csv,text/csv" aria-describedby="stations-info"><p class="file-note" id="stations-info">주유소 표준데이터</p></div>
+        <div><label class="field-label" for="prices"><img src="assets/icons/tag.svg" alt="">주유가격 CSV</label><input id="prices" type="file" accept=".csv,text/csv" aria-describedby="prices-info"><p class="file-note" id="prices-info">주유소별 일간 판매가격</p></div>
+      </div>
+      <fieldset id="region-fields" disabled><legend><img src="assets/icons/map-pin.svg" alt="">지역 선택</legend>
+        <div class="region-grid">
+          <label>시·도<select id="province"><option value="">전국</option></select></label>
+          <label>시·군·구<select id="district" disabled><option value="">전체</option></select></label>
+          <label>읍·면·동<select id="town" disabled><option value="">전체</option></select></label>
+        </div>
+      </fieldset>
+      <p id="status" class="status" role="status">행정구역 데이터를 불러오는 중입니다.</p>
+    </section>
+    <section class="panel results" aria-label="추출 결과">
+      <div class="section-head"><div><h2 id="region-name">전국</h2><p id="selection-note">파일을 불러오면 추출 건수가 표시됩니다.</p></div></div>
+      <div class="metric-grid">
+        <div class="metric"><span><img src="assets/icons/fuel.svg" alt="">주유소</span><strong id="station-count">—</strong><button id="save-stations" disabled><img src="assets/icons/download.svg" alt="">주유소 CSV 저장</button></div>
+        <div class="metric"><span><img src="assets/icons/tag.svg" alt="">일간 가격 기록</span><strong id="price-count">—</strong><button id="save-prices" disabled><img src="assets/icons/download.svg" alt="">주유가격 CSV 저장</button></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

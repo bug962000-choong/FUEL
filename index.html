@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'">
+  <title>겨울길 주유지도</title>
+  <link rel="icon" href="assets/icons/snowflake.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="top"><div class="shell top-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/icons/snowflake.svg" alt=""></span>겨울길 주유지도</a>
+    <span class="offline"><span></span>오프라인 사용 가능</span>
+  </div></header>
+  <main class="shell home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">겨울길<br>주유지도</h1>
+        <p>내 CSV에서 필요한 지역만 추출하고<br>지도에서 주유소별 가격을 확인하세요.</p>
+      </div>
+    </section>
+    <nav class="menu-grid" aria-label="주요 메뉴">
+      <a class="menu-card" href="extract.html">
+        <span class="menu-icon"><img src="assets/icons/file-spreadsheet.svg" alt=""></span>
+        <div><h2>지역별 CSV 추출</h2><p>선택한 지역의 주유소 정보와 일간 판매가격을 각각 저장합니다.</p><span class="card-action">추출 화면 열기</span></div>
+      </a>
+      <a class="menu-card" href="map.html">
+        <span class="menu-icon mint"><img src="assets/icons/map.svg" alt=""></span>
+        <div><h2>지도에서 주유가격 조회</h2><p>지역을 선택하고 지도에서 주유소별·날짜별 가격을 조회합니다.</p><span class="card-action">지도 화면 열기</span></div>
+      </a>
+    </nav>
+  </main>
+</body>
+</html>

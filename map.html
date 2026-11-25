@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'">
+  <title>지도에서 주유가격 조회 · 겨울길 주유지도</title>
+  <link rel="icon" href="assets/icons/snowflake.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/data.js" defer></script>
+  <script src="assets/regions.js" defer></script>
+  <script src="assets/map.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body data-page="map">
+  <header class="top"><div class="shell top-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"><img src="assets/icons/snowflake.svg" alt=""></span>겨울길 주유지도</a>
+    <a class="home-link" href="index.html"><img src="assets/icons/house.svg" alt="">메인으로</a>
+  </div></header>
+  <main class="shell workspace">
+    <div class="page-heading"><h1>지도에서 주유가격 조회</h1><p>파일을 불러온 뒤 지도나 목록에서 주유소를 선택하세요.</p></div>
+    <section class="panel inputs" aria-label="CSV 파일 불러오기">
+      <div class="file-grid">
+        <div><label class="field-label" for="stations"><img src="assets/icons/fuel.svg" alt="">주유소 CSV</label><input id="stations" type="file" accept=".csv,text/csv" aria-describedby="stations-info"><p class="file-note" id="stations-info">주유소 표준데이터</p></div>
+        <div><label class="field-label" for="prices"><img src="assets/icons/tag.svg" alt="">주유가격 CSV</label><input id="prices" type="file" accept=".csv,text/csv" aria-describedby="prices-info"><p class="file-note" id="prices-info">주유소별 일간 판매가격</p></div>
+      </div>
+      <fieldset id="region-fields" disabled><legend><img src="assets/icons/map-pin.svg" alt="">지역 선택</legend>
+        <div class="region-grid">
+          <label>시·도<select id="province"><option value="">전국</option></select></label>
+          <label>시·군·구<select id="district" disabled><option value="">전체</option></select></label>
+          <label>읍·면·동<select id="town" disabled><option value="">전체</option></select></label>
+        </div>
+      </fieldset>
+      <p id="status" class="status" role="status">행정구역 데이터를 불러오는 중입니다.</p>
+    </section>
+    <div class="map-layout">
+      <section class="panel map-panel" aria-labelledby="region-name">
+        <div class="section-head"><div><h2 id="region-name">전국</h2><p id="selection-note">파일을 불러오면 지도와 목록에 주유소가 표시됩니다.</p></div></div>
+        <div class="map-frame">
+          <canvas id="map-canvas" aria-label="행정구역과 주유소 지도" aria-describedby="map-caption"></canvas>
+          <div class="map-controls" aria-label="지도 조작">
+            <button id="zoom-in" type="button" aria-label="확대"><img src="assets/icons/plus.svg" alt=""></button>
+            <button id="zoom-out" type="button" aria-label="축소"><img src="assets/icons/minus.svg" alt=""></button>
+            <button id="recenter" type="button" aria-label="선택 지역에 맞추기"><img src="assets/icons/locate-fixed.svg" alt=""></button>
+          </div>
+          <div class="map-legend"><span class="legend-boundary"></span>선택 지역 <span class="legend-station"></span>주유소</div>
+        </div>
+        <p id="map-caption" class="map-caption">지도를 끌어서 이동하세요. 지역 선택기와 주유소 목록으로도 지도를 탐색할 수 있습니다.</p>
+      </section>
+      <aside class="map-side" aria-label="주유소 가격 및 목록">
+        <section id="details" class="panel details" aria-live="polite"><h2>주유가격</h2><p>주유소를 선택하면 날짜별 판매가격이 표시됩니다.</p></section>
+        <section class="panel station-panel"><h2>주유소 목록 <span id="station-total"></span></h2><label for="station-search" class="sr-only">현재 지역의 주유소 검색</label><input id="station-search" type="search" placeholder="이름 또는 주소로 검색" disabled><ul id="station-list" class="station-list"></ul></section>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
